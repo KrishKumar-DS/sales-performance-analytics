@@ -56,11 +56,11 @@ print("Dataset loaded successfully!")
 # print(df['Order_ID'].duplicated().sum())
 
 
-dates = pd.to_datetime(
-    df['Order_Date'],
-    format="%d-%m-%Y",
-    errors="coerce"
-)
+# dates = pd.to_datetime(
+#     df['Order_Date'],
+#     format="%d-%m-%Y",
+#     errors="coerce"
+# )
 
 # print("Invalid Dates:", dates.isna().sum())
 
@@ -138,6 +138,18 @@ dates = pd.to_datetime(
 # print(invalid_profit)
 
 
-invalid_cost = df[df['Cost'] <= 0]
-print("Invalid Cost:", len(invalid_cost))
-print(invalid_cost)
+# invalid_cost = df[df['Cost'] <= 0]
+# print("Invalid Cost:", len(invalid_cost))
+# print(invalid_cost)
+
+
+df.columns = df.columns.str.lower()
+df.columns = df.columns.str.strip().str.replace(" ", "_")
+
+
+# To change a name of a column
+# df = df.rename(columns={'unit_price': 'unit_price(inr)'})
+
+
+null = df.isnull().sum()
+print(null)
